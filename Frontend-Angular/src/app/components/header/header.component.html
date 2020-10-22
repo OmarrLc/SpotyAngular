@@ -1,0 +1,46 @@
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img src="../assets/img/spotify-white-logo.png" style="width: 180px;"></a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#" (click)="abrirNuevaPlaylists(modalNuevaPlaylist)">Nueva playlist</a>
+            <a class="nav-link" href="#" (click)="abrirModalUsuario(modalCambiarUsuario)">Cambiar usuario</a>
+        </li>
+    </ul>
+</nav>
+
+<ng-template #modalNuevaPlaylist let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Nueva Playlists</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <input [(ngModel)]="nombrePlaylist" class="form-control" type="text" placeholder="Nombre del Playlist">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" (click)="guardarPlaylists()">Cuardar</button>
+        <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+</ng-template>
+
+<ng-template #modalCambiarUsuario let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Seleccione el usuario</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <select class="form-control" [(ngModel)]="usuarioSeleccionado">
+            <option value="">Seleccione un usuario</option>
+           <option *ngFor="let usuario of usuarios" [ngValue]="usuario._id">{{usuario.nombreUsuario}}</option>
+           
+       </select>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" (click)="seleccionarUsuario( )">Seleccionar Usuario</button>
+        <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+</ng-template>
